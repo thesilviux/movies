@@ -1,0 +1,94 @@
+package com.texoit.teste.silvio.controller;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+
+
+@SpringBootTest
+@AutoConfigureMockMvc
+class MovieControllerIntegrationTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+
+	@Test
+	void whenCallProducersEndpoint_themReturnsExpectedJSON() throws Exception {
+		String expectedJSON = """
+			{
+			  "min": [
+			    {
+			      "producer": "Bo Derek",
+			      "interval": 6,
+			      "previousWin": 1984,
+			      "followingWin": 1990
+			    }
+			  ],
+			  "max": [
+			    {
+			      "producer": "Bo Derek",
+			      "interval": 6,
+			      "previousWin": 1984,
+			      "followingWin": 1990
+			    }
+			  ]
+			}
+			""";
+		
+		MvcResult mvcResult = mockMvc
+			.perform(get("/movie/producers").contentType("application/json"))
+			.andReturn();
+		String resultJSON = mvcResult.getResponse().getContentAsString();
+		
+		System.out.println();
+		System.out.println(resultJSON);
+		System.out.println();
+		
+		assertThat(resultJSON).isEqualToIgnoringWhitespace(expectedJSON);
+		
+	}
+	
+	@Test
+	void whenCallStudiosEndpoint_themReturnsExpectedJSON() throws Exception {
+		String expectedJSON = """
+			{
+			  "min": [
+			    {
+			      "studio": "Columbia Pictures",
+			      "interval": 1,
+			      "previousWin": 2017,
+			      "followingWin": 2018
+			    }
+			  ],
+			  "max": [
+			    {
+			      "studio": "Columbia Pictures",
+			      "interval": 24,
+			      "previousWin": 1987,
+			      "followingWin": 2011
+			    }
+			  ]
+			}
+			""";
+		
+		MvcResult mvcResult = mockMvc
+			.perform(get("/movie/studios").contentType("application/json"))
+			.andReturn();
+		String resultJSON = mvcResult.getResponse().getContentAsString();
+		
+		System.out.println();
+		System.out.println(resultJSON);
+		System.out.println();
+		
+		assertThat(resultJSON).isEqualToIgnoringWhitespace(expectedJSON);
+		
+	}
+
+}
