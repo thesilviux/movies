@@ -14,14 +14,14 @@ Para construir e executar a aplicação você precisa:
    
 ### Importando o Projeto Maven
   
-Acione o menu `File -> Import...`
+Acione o menu `File - Import...`
 
 ![menu File -> Import...](images/01-menu_file_import.png)
 
    <br/>
    <br/>
    <br/>
-Será aberto o diálogo `Import`. Então selecione a opção `Maven -> Existing Maven Projects` e acione o comando ` Next > `
+Será aberto o diálogo `Import`. Então selecione a opção `Maven - Existing Maven Projects` e acione o comando `Next`
 
 ![diálogo Import - Maven - Existing Maven Projects + Next](images/02-import_maven_existing_maven_projects.png)
 
