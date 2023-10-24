@@ -14,40 +14,56 @@ import com.texoit.teste.silvio.model.MovieWinnerStudio;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 	
 
-	@Query(nativeQuery = true, value = "\r\n"
-			+ "SELECT ag.*, m.ano AS `year`, m.winner \r\n"
-			+ "FROM\r\n"
-			+ "(\r\n"
-			+ "	SELECT \r\n"
-			+ "	    studios, \r\n"
-			+ "	    count(1) AS times\r\n"
-			+ "	FROM MOVIE \r\n"
-			+ "	WHERE winner = 'yes'\r\n"
-			+ "	GROUP BY studios\r\n"
-			+ "	HAVING times > 1\r\n"
-			+ ") ag\r\n"
-			+ "LEFT JOIN MOVIE m ON ag.studios= m.studios \r\n"
-			+ "WHERE winner = 'yes'\r\n"
-			+ "ORDER BY ag.times DESC, ag.studios, `year`\r\n"
-			+ "")
+//	@Query(nativeQuery = true, value = "\r\n"
+//			+ "SELECT ag.*, m.ano AS `year`, m.winner \r\n"
+//			+ "FROM\r\n"
+//			+ "(\r\n"
+//			+ "	SELECT \r\n"
+//			+ "	    studios, \r\n"
+//			+ "	    count(1) AS times\r\n"
+//			+ "	FROM MOVIE \r\n"
+//			+ "	WHERE winner = 'yes'\r\n"
+//			+ "	GROUP BY studios\r\n"
+//			+ "	HAVING times > 1\r\n"
+//			+ ") ag\r\n"
+//			+ "LEFT JOIN MOVIE m ON ag.studios= m.studios \r\n"
+//			+ "WHERE winner = 'yes'\r\n"
+//			+ "ORDER BY ag.times DESC, ag.studios, `year`\r\n"
+//			+ "")
+	@Query(nativeQuery = true, value = """
+		SELECT DISTINCT
+            studios, ano AS `year`
+        FROM
+            MOVIE    
+        WHERE
+            winner = 'yes'   
+	""")
 	List<MovieWinnerStudio> countWinnerAgregatedByStudios();
-	
-	@Query(nativeQuery = true, value = "\r\n"
-			+ "SELECT ag.*, m.ano AS `year`, m.winner \r\n"
-			+ "FROM\r\n"
-			+ "(\r\n"
-			+ "	SELECT \r\n"
-			+ "	    producers, \r\n"
-			+ "	    count(1) AS times\r\n"
-			+ "	FROM MOVIE \r\n"
-			+ "	WHERE winner = 'yes'\r\n"
-			+ "	GROUP BY producers\r\n"
-			+ "	HAVING times > 1\r\n"
-			+ ") ag\r\n"
-			+ "LEFT JOIN MOVIE m ON ag.producers= m.producers \r\n"
-			+ "WHERE winner = 'yes'\r\n"
-			+ "ORDER BY ag.times DESC, ag.producers, `year`\r\n"
-			+ "")
+
+//	@Query(nativeQuery = true, value = "\r\n"
+//			+ "SELECT ag.*, m.ano AS `year`, m.winner \r\n"
+//			+ "FROM\r\n"
+//			+ "(\r\n"
+//			+ "	SELECT \r\n"
+//			+ "	    producers, \r\n"
+//			+ "	    count(1) AS times\r\n"
+//			+ "	FROM MOVIE \r\n"
+//			+ "	WHERE winner = 'yes'\r\n"
+//			+ "	GROUP BY producers\r\n"
+//			+ "	HAVING times > 1\r\n"
+//			+ ") ag\r\n"
+//			+ "LEFT JOIN MOVIE m ON ag.producers= m.producers \r\n"
+//			+ "WHERE winner = 'yes'\r\n"
+//			+ "ORDER BY ag.times DESC, ag.producers, `year`\r\n"
+//			+ "")
+	@Query(nativeQuery = true, value = """
+		SELECT DISTINCT
+	        producers, ano AS `year`
+	    FROM
+	        MOVIE    
+	    WHERE
+	        winner = 'yes'   
+	""")
 	List<MovieWinnerProducer> countWinnerAgregatedByProducers();
 	
 }

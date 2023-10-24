@@ -23,22 +23,22 @@ class MovieControllerIntegrationTest {
 	void whenCallProducersEndpoint_themReturnsExpectedJSON() throws Exception {
 		String expectedJSON = """
 			{
-			  "min": [
-			    {
-			      "producer": "Bo Derek",
-			      "interval": 6,
-			      "previousWin": 1984,
-			      "followingWin": 1990
-			    }
-			  ],
-			  "max": [
-			    {
-			      "producer": "Bo Derek",
-			      "interval": 6,
-			      "previousWin": 1984,
-			      "followingWin": 1990
-			    }
-			  ]
+			    "min": [
+			        {
+			            "producer": "Joel Silver",
+			            "interval": 1,
+			            "previousWin": 1990,
+			            "followingWin": 1991
+			        }
+			    ],
+			    "max": [
+			        {
+			            "producer": "Matthew Vaughn",
+			            "interval": 13,
+			            "previousWin": 2002,
+			            "followingWin": 2015
+			        }
+			    ]
 			}
 			""";
 		
@@ -59,22 +59,40 @@ class MovieControllerIntegrationTest {
 	void whenCallStudiosEndpoint_themReturnsExpectedJSON() throws Exception {
 		String expectedJSON = """
 			{
-			  "min": [
-			    {
-			      "studio": "Columbia Pictures",
-			      "interval": 1,
-			      "previousWin": 2017,
-			      "followingWin": 2018
-			    }
-			  ],
-			  "max": [
-			    {
-			      "studio": "Columbia Pictures",
-			      "interval": 24,
-			      "previousWin": 1987,
-			      "followingWin": 2011
-			    }
-			  ]
+			    "min": [
+			        {
+			            "studio": "Columbia Pictures",
+			            "interval": 1,
+			            "previousWin": 2017,
+			            "followingWin": 2018
+			        },
+			        {
+			            "studio": "Paramount Pictures",
+			            "interval": 1,
+			            "previousWin": 2008,
+			            "followingWin": 2009
+			        },
+			        {
+			            "studio": "Paramount Pictures",
+			            "interval": 1,
+			            "previousWin": 2009,
+			            "followingWin": 2010
+			        },
+			        {
+			            "studio": "Warner Bros.",
+			            "interval": 1,
+			            "previousWin": 1999,
+			            "followingWin": 2000
+			        }
+			    ],
+			    "max": [
+			        {
+			            "studio": "Paramount Pictures",
+			            "interval": 15,
+			            "previousWin": 1993,
+			            "followingWin": 2008
+			        }
+			    ]
 			}
 			""";
 		
